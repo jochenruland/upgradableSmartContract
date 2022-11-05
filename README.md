@@ -1,6 +1,11 @@
-# Sample Hardhat Project
+# Upgradeable smart contracts
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, and a script that deploys that contract.
+This project is for experimentation purposes implementing a simple proxy pattern
+in order to make smart contracts upgradeable.
+
+A great tutorial on upgradeable smart contracts can be found [here](https://jeiwan.net/posts/upgradeable-proxy-from-scratch/)
+
+Hardhat is used as development and test environment.
 
 Try running some of the following tasks:
 
