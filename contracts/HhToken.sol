@@ -1,5 +1,5 @@
 //SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.9;
+pragma solidity ^0.8.17;
 
 
 // Uncomment this line to use console.log
@@ -37,15 +37,12 @@ contract HhToken {
     function initialize() public {
       require(!initialized, "already initialized");
 
-      magicNumber = 0x42;
-      initialized = true;
-    }
+      // The totalSupply is assigned to the transaction sender, which is the
+      // account that is deploying the contract.
+      balances[msg.sender] = totalSupply;
+      owner = msg.sender;
 
-    constructor() {
-        // The totalSupply is assigned to the transaction sender, which is the
-        // account that is deploying the contract.
-        balances[msg.sender] = totalSupply;
-        owner = msg.sender;
+      initialized = true;
     }
 
     /**
