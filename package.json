@@ -10,8 +10,8 @@
     "type": "git",
     "url": "git+https://github.com/jochenruland/upgradableSmartContract.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Jochen Ruland",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/jochenruland/upgradableSmartContract/issues"
   },
