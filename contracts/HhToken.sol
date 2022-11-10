@@ -8,6 +8,11 @@ import "hardhat/console.sol";
 
 // This is the main building block for smart contracts.
 contract HhToken {
+
+    // *bool initialized;
+    // *uint256 magicNumber;
+
+
     // Some string type variables to identify the token.
     string public name = "My Hardhat Token";
     string public symbol = "MHT";
@@ -28,6 +33,14 @@ contract HhToken {
     /**
      * Contract initialization.
      */
+
+    function initialize() public {
+      require(!initialized, "already initialized");
+
+      magicNumber = 0x42;
+      initialized = true;
+    }
+
     constructor() {
         // The totalSupply is assigned to the transaction sender, which is the
         // account that is deploying the contract.
