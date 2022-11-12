@@ -9,9 +9,8 @@ import "hardhat/console.sol";
 // This is the main building block for smart contracts.
 contract HhToken {
 
-    // *bool initialized;
-    // *uint256 magicNumber;
-
+    // controls initialization of state variables
+    bool initialized;
 
     // Some string type variables to identify the token.
     string public name = "My Hardhat Token";
