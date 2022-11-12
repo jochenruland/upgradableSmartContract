@@ -7,7 +7,7 @@ const { expect } = require("chai");
 describe("Proxy", async () => {
   let owner;
   let proxy, hhTokenLogic;
-  let abi;
+  let HhTokenJSON, abi;
 
   beforeEach(async () => {
     [owner] = await hre.ethers.getSigners();
@@ -17,7 +17,7 @@ describe("Proxy", async () => {
     console.log("Token address:", hhTokenLogic.address);
 
     await hhTokenLogic.deployed();
-    const HhTokenJSON = require('../artifacts/contracts/HhToken.sol/HhToken.json');
+    HhTokenJSON = require('../artifacts/contracts/HhToken.sol/HhToken.json');
 
     const Proxy = await hre.ethers.getContractFactory("Proxy");
     proxy = await Proxy.deploy();
