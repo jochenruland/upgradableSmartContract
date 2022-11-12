@@ -1,6 +1,7 @@
 // This code example has been widely copied https://github.com/Jeiwan/upgradeable-proxy-from-scratch under MIT License
 
-require("@nomiclabs/hardhat-waffle");
+//require("@nomiclabs/hardhat-waffle");
+const hre = require("hardhat");
 const { expect } = require("chai");
 
 describe("Proxy", async () => {
@@ -9,16 +10,16 @@ describe("Proxy", async () => {
   let abi;
 
   beforeEach(async () => {
-    [owner] = await ethers.getSigners();
+    [owner] = await hre.ethers.getSigners();
 
-    const HhToken = await ethers.getContractFactory("HhToken");
+    const HhToken = await hre.ethers.getContractFactory("HhToken");
     hhTokenLogic = await HhToken.deploy();
     console.log("Token address:", hhTokenLogic.address);
 
     await hhTokenLogic.deployed();
     const HhTokenJSON = require('../artifacts/contracts/HhToken.sol/HhToken.json');
 
-    const Proxy = await ethers.getContractFactory("Proxy");
+    const Proxy = await hre.ethers.getContractFactory("Proxy");
     proxy = await Proxy.deploy();
     console.log("Token address:", proxy.address);
 
