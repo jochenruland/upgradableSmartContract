@@ -1,3 +1,90 @@
+// This code example has been widely copied https://github.com/Jeiwan/upgradeable-proxy-from-scratch under MIT License
+
+require("@nomiclabs/hardhat-waffle");
+const { expect } = require("chai");
+
+describe("Proxy", async () => {
+  let owner;
+  let proxy, hhTokenLogic;
+  let abi;
+
+  beforeEach(async () => {
+    [owner] = await ethers.getSigners();
+
+    const HhToken = await ethers.getContractFactory("HhToken");
+    hhTokenLogic = await HhToken.deploy();
+    console.log("Token address:", hhTokenLogic.address);
+
+    await hhTokenLogic.deployed();
+    const HhTokenJSON = require('../artifacts/contracts/HhToken.sol/HhToken.json');
+
+    const Proxy = await ethers.getContractFactory("Proxy");
+    proxy = await Proxy.deploy();
+    console.log("Token address:", proxy.address);
+
+    await proxy.deployed();
+    await proxy.setImplementation(hhTokenLogic.address);
+
+    abi = ["function initialize() public"];
+    const proxied = new ethers.Contract(proxy.address, abi, owner);
+
+    await proxied.initialize();
+  });
+
+  it("points to an implementation contract", async () => {
+    expect(await proxy.callStatic.getImplementation()).to.eq(hhTokenLogic.address);
+  });
+
+  it("proxies calls to implementation contract", async () => {
+    abi = HhTokenJSON.abi;
+    /*
+    [
+      "function setMagicNumber(uint256 newMagicNumber) public",
+      "function getMagicNumber() public view returns (uint256)",
+    ];
+    */
+    const proxied = new ethers.Contract(proxy.address, abi, owner);
+
+    expect(await proxied.owner()).to.eq(owner.address);
+  });
+
+  it("cannot be initialized twice", async () => {
+    abi = ["function initialize() public"];
+    const proxied = new ethers.Contract(proxy.address, abi, owner);
+
+    await expect(proxied.initialize()).to.be.revertedWith(
+      "already initialized"
+    );
+  });
+
+  /*
+  it("allows to change implementations", async () => {
+    const LogicV2 = await ethers.getContractFactory("LogicV2");
+    logicv2 = await LogicV2.deploy();
+    await logicv2.deployed();
+
+    await proxy.setImplementation(logicv2.address);
+
+    abi = [
+      "function initialize() public",
+      "function setMagicNumber(uint256 newMagicNumber) public",
+      "function getMagicNumber() public view returns (uint256)",
+      "function doMagic() public",
+    ];
+
+    const proxied = new ethers.Contract(proxy.address, abi, owner);
+
+    await proxied.setMagicNumber(0x33);
+    expect(await proxied.getMagicNumber()).to.eq("0x33");
+
+    await proxied.doMagic();
+    expect(await proxied.getMagicNumber()).to.eq("0x19");
+  });
+  */
+});
+
+
+/*
 // This is an example test file. Hardhat will run every *.js file in `test/`,
 // so feel free to add new ones.
 
@@ -117,3 +204,4 @@ describe("HhToken contract", function () {
     });
   });
 });
+*/
