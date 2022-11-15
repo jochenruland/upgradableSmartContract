@@ -58,30 +58,24 @@ describe("Proxy", async () => {
     );
   });
 
-  /*
+
   it("allows to change implementations", async () => {
-    const LogicV2 = await ethers.getContractFactory("LogicV2");
-    logicv2 = await LogicV2.deploy();
-    await logicv2.deployed();
+    const HhToken_v2 = await ethers.getContractFactory("HhToken_v2");
+    hhToken_v2 = await HhToken_v2.deploy();
+    await hhToken_v2.deployed();
+    HhTokenJSON = require('../artifacts/contracts/HhToken_v2.sol/HhToken_v2.json');
 
-    await proxy.setImplementation(logicv2.address);
+    await proxy.setImplementation(hhToken_v2.address);
 
-    abi = [
-      "function initialize() public",
-      "function setMagicNumber(uint256 newMagicNumber) public",
-      "function getMagicNumber() public view returns (uint256)",
-      "function doMagic() public",
-    ];
+    abi = HhTokenJSON.abi;
 
-    const proxied = new ethers.Contract(proxy.address, abi, owner);
+    const proxied2 = new ethers.Contract(proxy.address, abi, owner);
 
-    await proxied.setMagicNumber(0x33);
-    expect(await proxied.getMagicNumber()).to.eq("0x33");
+    await proxied2.calculate50PercentBalance(owner.address);
+    expect(await proxied2.fiftyPercentOfBalance()).to.eq("500000");
 
-    await proxied.doMagic();
-    expect(await proxied.getMagicNumber()).to.eq("0x19");
   });
-  */
+
 });
 
 
