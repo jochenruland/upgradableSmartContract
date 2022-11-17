@@ -17,13 +17,13 @@ require("@nomicfoundation/hardhat-toolbox");
 module.exports = {
 
   networks: {
-    mainnetFork: {
-      url: "http://127.0.0.1:7545",
+    //mainnetFork: {
+      // url: "http://127.0.0.1:7545",
       // accounts: [GOERLI_PRIVATE_KEY],
       // host: "127.0.0.1",     // Localhost (default: none)
       // port: 7545,            // Standard Ethereum port (default: none)
-      network_id: "999",       // Any network (default: none)
-      websocket: true
+      // network_id: "999",       // Any network (default: none)
+      // websocket: true
     },
     //goerli: {
     //  url: `https://eth-goerli.alchemyapi.io/v2/${ALCHEMY_API_KEY}`,
