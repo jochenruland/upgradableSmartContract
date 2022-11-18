@@ -5,7 +5,7 @@ in order to make smart contracts upgradeable.
 
 A great tutorial on upgradeable smart contracts can be found [here](https://jeiwan.net/posts/upgradeable-proxy-from-scratch/)
 
-Here you get the basic ideas from Openzepppelin blog on upgradable contracts [here][https://blog.openzeppelin.com/proxy-patterns/]
+Here you get the basic ideas from Openzepppelin blog on upgradable contracts [here](https://blog.openzeppelin.com/proxy-patterns/)
 
 
 ### *General Concept*
@@ -39,7 +39,7 @@ Here you get the basic ideas from Openzepppelin blog on upgradable contracts [he
 - *Deploy a new version of your contract (v2) making sure it inherits the state variable structures used in previous versions.*
 - *Call your OwnedUpgradeabilityProxy instance to upgrade to the address of your new contract version.*
 
-*The upgradable contract architecture based on unstructured storage pattern has been further devlopped using transparent proxies to avoid potential function clashes [here][https://docs.openzeppelin.com/upgrades-plugins/1.x/proxies?utm_source=zos&utm_medium=blog&utm_campaign=proxy-pattern]*
+*The upgradable contract architecture based on unstructured storage pattern has been further devlopped using transparent proxies to avoid potential function clashes [here](https://docs.openzeppelin.com/upgrades-plugins/1.x/proxies?utm_source=zos&utm_medium=blog&utm_campaign=proxy-pattern)*
 
 ### *Transparent Proxies and Function Clashes*
 *As described in the previous sections, upgradeable contract instances (or proxies) work by delegating all calls to a logic contract. However, the proxies need some functions of their own, such as upgradeTo(address) to upgrade to a new implementation. This begs the question of how to proceed if the logic contract also has a function named upgradeTo(address): upon a call to that function, did the caller intend to call the proxy or the logic contract?*
