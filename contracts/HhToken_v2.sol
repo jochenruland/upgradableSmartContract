@@ -4,17 +4,15 @@ pragma solidity ^0.8.17;
 
 // Uncomment this line to use console.log
 import "hardhat/console.sol";
+import "./Initializable.sol";
 
 
 // This is the main building block for smart contracts.
-contract HhToken_v2 {
-
-    // controls initialization of state variables
-    bool initialized;
+contract HhToken_v2 is Initializable {
 
     // Some string type variables to identify the token.
-    string public name = "My Hardhat Token";
-    string public symbol = "MHT";
+    string public name = "My Hardhat Token V2";
+    string public symbol = "MHTv2 ";
 
     // The fixed amount of tokens, stored in an unsigned integer type variable.
     uint256 public totalSupply = 1000000;
@@ -36,15 +34,12 @@ contract HhToken_v2 {
      * Contract initialization.
      */
 
-    function initialize() public {
-      require(!initialized, "already initialized");
-
+    function reInitialize() public reinitializer(2) {
       // The totalSupply is assigned to the transaction sender, which is the
       // account that is deploying the contract.
-      balances[msg.sender] = totalSupply;
+      balances[msg.sender] = 1000000;
       owner = msg.sender;
 
-      initialized = true;
     }
 
     /**
