@@ -3,7 +3,8 @@
 This project is for experimentation purposes implementing a simple proxy pattern
 in order to make smart contracts upgradeable.
 
-A great tutorial on upgradeable smart contracts can be found [here](https://jeiwan.net/posts/upgradeable-proxy-from-scratch/)
+A great tutorial on upgradeable smart contracts can be found [https://jeiwan.net/posts/upgradeable-proxy-from-scratch/]
+Further details especially on initialization can be found [here](https://dev.to/abhikbanerjee99/nuances-of-using-upgradeable-smart-contracts-5acj)
 
 Here you get the basic ideas from Openzepppelin blog on upgradable contracts [here](https://blog.openzeppelin.com/proxy-patterns/)
 
