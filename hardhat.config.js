@@ -24,12 +24,12 @@ module.exports = {
       // port: 7545,            // Standard Ethereum port (default: none)
       // network_id: "999",       // Any network (default: none)
       // websocket: true
-    },
+    //},
     //goerli: {
     //  url: `https://eth-goerli.alchemyapi.io/v2/${ALCHEMY_API_KEY}`,
     //  accounts: [GOERLI_PRIVATE_KEY]
     //}
-  },
+  },  
 
   // Set default mocha options here, use special reporters etc.
   mocha: {
@@ -40,3 +40,4 @@ module.exports = {
     version: "0.8.17"
   }
 }
+
